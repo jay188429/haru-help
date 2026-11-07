@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "id": "p01",
+      "name": "리넨 앞치마",
+      "stock": 12
+    },
+    {
+      "id": "p02",
+      "name": "원목 도마",
+      "stock": 3
+    },
+    {
+      "id": "p03",
+      "name": "무명 행주 다섯 장",
+      "stock": 40
+    },
+    {
+      "id": "p04",
+      "name": "1인용 편수냄비",
+      "stock": 0
+    },
+    {
+      "id": "p05",
+      "name": "원목 수저통",
+      "stock": 7
+    }
+  ],
+  "orders": [
+    {
+      "id": "o101",
+      "item": "리넨 앞치마",
+      "status": "shipped",
+      "statusText": "배송 중 - 내일 도착 예정"
+    },
+    {
+      "id": "o102",
+      "item": "원목 도마",
+      "status": "preparing",
+      "statusText": "포장 중 - 오늘 안에 보냄"
+    }
+  ]
+}

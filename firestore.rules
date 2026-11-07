@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      // 본인 문서만 읽는다
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // 본인 문서만, 손님(customer)으로만 만든다
+      allow create: if request.auth != null && request.auth.uid == userId
+        && request.resource.data.role == "customer";
+    }
+    match /questions/{questionId} {
+      // 내 질문만 읽는다
+      allow read: if request.auth != null && request.auth.uid == resource.data.uid;
+      // 내 UID로, 기다림 상태로, 답 칸 없이 만들기만 한다
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.uid
+        && request.resource.data.status == "waiting"
+        && !("answer" in request.resource.data);
+    }
+    match /tickets/{ticketId} {
+      // 담당자(staff 클레임)만 읽는다 - 쓰는 것은 함수만
+      allow read: if request.auth != null && request.auth.token.staff == true;
+    }
+    match /kb/{docId} {
+      // 안내문은 손님이 읽지도 쓰지도 못한다
+      allow read, write: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

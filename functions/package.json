@@ -1,0 +1,11 @@
+{
+  "name": "functions",
+  "description": "하루상점 고객센터 Cloud Functions",
+  "main": "index.js",
+  "private": true,
+  "engines": { "node": "22" },
+  "dependencies": {
+    "firebase-admin": "^13.0.0",
+    "firebase-functions": "^6.0.0"
+  }
+}

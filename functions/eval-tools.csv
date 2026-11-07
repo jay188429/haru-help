@@ -1,0 +1,13 @@
+qid,question,tool
+t01,택배는 보통 언제쯤 받아요?,search_guides
+t02,얼마 넘게 사야 공짜로 보내 줘요?,search_guides
+t03,카드로 냈는데 돈은 며칠 뒤에 돌아와요?,search_guides
+t04,나무 도마가 갈라지지 않게 하려면?,search_guides
+t05,제가 시킨 앞치마 어디쯤 왔어요?,get_my_orders
+t06,내 주문 지금 어떤 상태예요?,get_my_orders
+t07,어제 주문한 거 언제 받을 수 있어요?,get_my_orders
+t08,제 주문 몇 건이나 있어요?,get_my_orders
+t09,원목 도마 지금 살 수 있어요?,get_stock
+t10,편수냄비 남아 있어요?,get_stock
+t11,행주 재고 몇 개 있어요?,get_stock
+t12,수저통 품절인가요?,get_stock
