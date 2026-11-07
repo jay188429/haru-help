@@ -6,7 +6,7 @@
 | 줄 | 확인함 / 아직 | 근거 화면 | 아직이면 누가 · 언제 |
 |---|---|---|---|
 | 로그아웃 상태로 buildKb 를 부르면 거절된다 | 확인함 | 로그인 없이 호출하면 `PERMISSION_DENIED "담당자만 안내문을 넣습니다"` 응답 (2026-11-07 curl) | |
-| 손님 계정으로 관리 화면을 열면 티켓이 보이지 않는다 | 확인함(규칙 시험) | `rules.test.js` 「거부 - 손님이 티켓을 읽는다」 통과. 배포한 화면에서 손님 계정으로 연 시험은 아직 | 나 · 제출 전에 다른 계정으로 admin.html 열기 |
+| 손님 계정으로 관리 화면을 열면 티켓이 보이지 않는다 | 확인함 | 다른 계정(aicam004@synnexedu.co.kr)으로 admin.html 을 열면 티켓 표가 비고 `permission-denied` 가 뜸 (2026-11-07). 규칙 시험 「거부 - 손님이 티켓을 읽는다」도 통과 | |
 | Gemini 키 값이 코드 · 메모장에 없다 | 아직 | 저장소에는 키가 없음(`git grep` 결과 없음, `.secret.local` 은 `.gitignore`). 다만 키를 대화창에 붙여 넣었다 | 나 · 제출 후 키를 새로 발급해 교체 |
 | 평가 · 시험 함수가 콘솔 함수 목록에 없다 | 아직 | 함수 목록: buildKb · grantStaff · onKbUploaded · onQuestionCreated · seedShop. evalKb · evalAgent · evalGuard · judgeAnswers 는 없음. seedShop 은 연습 데이터용이라 담당자만 부를 수 있게 했다(로그인 없이 호출하면 거절) | 나 · 시연 데이터가 필요 없어지면 seedShop 삭제 |
 | 다른 손님 질문이 내 채팅 화면에 보이지 않는다 | 확인함(규칙 시험) | `rules.test.js` 「거부 - 손님이 남의 질문을 읽는다」 통과. 화면 두 개로 직접 본 것은 아직 | 나 · 제출 전 |
