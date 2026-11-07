@@ -44,6 +44,7 @@
     <button id="btnNotify" class="ghost">알림 켜기</button>
     <button id="btnStaff" class="ghost">담당자 권한 받기</button>
     <button id="btnKb" class="ghost">안내문 넣기</button>
+    <button id="btnShop" class="ghost">연습 상품 넣기</button>
     <div id="kbResult"></div>
     <p><label>안내문 올리기 (.txt)<input id="file" type="file" accept=".txt,text/plain" /></label></p>
     <div id="uploadResult"></div>
@@ -135,6 +136,15 @@
       const res = await httpsCallable(functions, "buildKb", { timeout: 300000 })();
       $("kbResult").textContent = `안내문 ${res.data.saved}개 넣음`;
     } catch (e) { $("kbResult").textContent = ""; showErr(e); }
+  };
+
+  // 연습 상품 · 주문 넣기 — 주문은 입력한 UID(비우면 내 UID)의 것으로 들어간다
+  $("btnShop").onclick = async () => {
+    try {
+      const uid = prompt("내 주문 시험에 쓸 손님 UID (비우면 지금 로그인한 계정)", "") || undefined;
+      const res = await httpsCallable(functions, "seedShop")({ uid });
+      $("kbResult").textContent = `상품 ${res.data.products}개 · 주문 ${res.data.orders}개 넣음`;
+    } catch (e) { showErr(e); }
   };
 
   // 안내문 파일 올리기 — kb-files/ 아래 · text/plain · .txt

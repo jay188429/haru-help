@@ -175,10 +175,10 @@ exports.onQuestionCreated = onDocumentCreated(
   }
 );
 
-// 12. 연습용 상품 · 주문을 넣는 함수 - 에뮬레이터에서만 돈다
+// 12. 연습용 상품 · 주문을 넣는 함수 - 에뮬레이터에서는 누구나, 배포한 뒤에는 담당자만
 exports.seedShop = onCall(async (req) => {
-  if (process.env.FUNCTIONS_EMULATOR !== "true") {
-    throw new HttpsError("permission-denied", "에뮬레이터에서만 씁니다");
+  if (process.env.FUNCTIONS_EMULATOR !== "true" && req.auth?.token.staff !== true) {
+    throw new HttpsError("permission-denied", "담당자만 연습 상품을 넣습니다");
   }
   const shop = JSON.parse(fs.readFileSync(path.join(__dirname, "shop-haru.json"), "utf8"));
   const db = getFirestore();
@@ -186,7 +186,7 @@ exports.seedShop = onCall(async (req) => {
   shop.products.forEach((p) => batch.set(db.collection("products").doc(p.id), { name: p.name, stock: p.stock }));
   shop.orders.forEach((o) =>
     batch.set(db.collection("orders").doc(o.id), {
-      uid: req.data.uid,
+      uid: req.data.uid || req.auth?.uid,
       item: o.item,
       status: o.status,
       statusText: o.statusText,
